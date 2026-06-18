@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NyayaAI — ananyaontheshor</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=VT323&family=Spectral:ital,wght@1,300;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#03050f;color:#c8d4e8;font-family:'Crimson Pro',serif;overflow-x:hidden;}
+
+.nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid #0a1520;background:#03050f;position:relative;z-index:100;}
+.nav-brand{font-family:'VT323',monospace;font-size:22px;color:#4af0a0;letter-spacing:0.04em;text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'VT323',monospace;font-size:17px;color:#2a4a3a;text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+.nav-links a:hover{color:#4af0a0;}
+
+.post-wrap{max-width:680px;margin:0 auto;padding:4rem 2.5rem 6rem;}
+
+.back-link{font-family:'VT323',monospace;font-size:15px;color:#2a4a3a;text-decoration:none;letter-spacing:0.06em;display:inline-block;margin-bottom:3rem;transition:color 0.2s;}
+.back-link:hover{color:#4af0a0;}
+
+.post-type{font-family:'VT323',monospace;font-size:13px;color:#4af0a0;border:1px solid #1a4a2a;padding:2px 8px;display:inline-block;margin-bottom:1.5rem;}
+
+.post-title{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:42px;color:#e8f0ff;line-height:1.1;margin-bottom:1rem;}
+
+.post-date{font-family:'VT323',monospace;font-size:13px;color:#1a3a2a;margin-bottom:0.75rem;display:block;}
+
+.post-screenshot{width:100%;border:1px solid #0a1a14;margin:2rem 0;display:block;}
+
+.post-live-link{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:'VT323',monospace;font-size:15px;
+  color:#4af0a0;border:1px solid #1a4a2a;
+  padding:6px 14px;text-decoration:none;
+  transition:background 0.2s,border-color 0.2s;
+  margin-bottom:2.5rem;
+}
+.post-live-link:hover{background:#0a1a14;border-color:#4af0a0;}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#4af0a0;animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:0.4;}50%{opacity:1;}}
+
+.divider{height:1px;background:#0a1a14;margin:2.5rem 0;}
+
+.post-body{font-family:'Crimson Pro',serif;font-weight:300;font-size:19px;color:#7a9ab8;line-height:1.9;}
+.post-body p{margin-bottom:1.5rem;}
+.post-body em{color:#a0c8b8;font-style:italic;}
+.post-body strong{color:#c8d4e8;font-weight:400;}
+.post-body a{color:#4af0a0;text-decoration:none;border-bottom:1px solid #1a4a2a;transition:border-color 0.2s;}
+.post-body a:hover{border-bottom-color:#4af0a0;}
+
+.post-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:3rem;padding-top:2rem;border-top:1px solid #0a1a14;}
+.ptag{font-family:'VT323',monospace;font-size:13px;color:#1a3a2a;border:1px solid #0a1a14;padding:2px 8px;}
+
+.footer{padding:1.75rem 2.5rem;border-top:1px solid #0a1014;background:#02030a;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-family:'VT323',monospace;font-size:19px;color:#1a3a2a;letter-spacing:0.04em;}
+.footer-right{font-family:'VT323',monospace;font-size:12px;color:#0f1f14;letter-spacing:0.06em;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/index.html" class="nav-brand">&gt; ananyaontheshor</a>
+  <ul class="nav-links">
+    <li><a href="/index.html#everything">everything</a></li>
+    <li><a href="/index.html#about">about</a></li>
+  </ul>
+</nav>
+
+<div class="post-wrap">
+  <a href="/index.html" class="back-link">&larr; back</a>
+
+  <span class="post-type">project</span>
+  <h1 class="post-title">i built a legal research tool because i was tired of the alternative</h1>
+  <span class="post-date">jun 2026</span>
+
+  <img src="nyayaai-screenshot.png" alt="NyayaAI interface" class="post-screenshot">
+
+  <a href="https://nyayaai.up.railway.app/" target="_blank" class="post-live-link">
+    <span class="live-dot"></span>
+    live at nyayaai.up.railway.app
+  </a>
+
+  <div class="divider"></div>
+
+  <div class="post-body">
+    <p>Indian legal research is broken in a specific, quiet way. The information exists. 3 crore+ judgments, SEBI orders, RBI notifications, tribunal records, every act ever passed. It's all technically accessible. It's just buried. Inaccessible in the way that only systems designed without the end user in mind can be.</p>
+
+    <p>I have a law degree. I know how to find things. And I still found it exhausting.</p>
+
+    <p>So I built NyayaAI. Not because I had a grand plan, but because I needed it to exist and it didn't.</p>
+
+    <p>It's a legal research platform with an AI intelligence layer on top of the Indian Kanoon database. You can search across Supreme Court judgments, High Court orders, SEBI and RBI notifications, India Code. For free. The AI features come in when you need to actually <em>understand</em> what you found, not just find it.</p>
+
+    <p>There are four of them. The Judgment Analyser pulls out ratio decidendi, cited sections, key holdings, and gives you a plain-language summary of any judgment. The Compliance Checker runs four agents in parallel and produces a unified risk report. The Contract Reviewer reads an uploaded contract against Indian law and tells you what's missing, what's risky, what to negotiate. The Correlate feature cross-references acts and sections with their actual judicial interpretations, so you see not just what the law says but how courts have read it.</p>
+
+    <p>Each one does something that used to require either a law library subscription or a lawyer's hourly rate just to get a first pass.</p>
+
+    <p>It's live at <a href="https://nyayaai.up.railway.app/" target="_blank">nyayaai.up.railway.app</a>. Built with React, Express, Claude AI, deployed on Railway. Search is free, no account needed.</p>
+
+    <p><em>It's not finished. It keeps growing. That's fine.</em></p>
+  </div>
+
+  <div class="post-tags">
+    <span class="ptag">legaltech</span>
+    <span class="ptag">AI</span>
+    <span class="ptag">React</span>
+    <span class="ptag">Claude API</span>
+    <span class="ptag">Indian law</span>
+    <span class="ptag">project</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <span class="footer-brand">&gt; ananyaontheshor_</span>
+  <span class="footer-right">everything is a draft. // 2026</span>
+</footer>
+
+</body>
+</html>
