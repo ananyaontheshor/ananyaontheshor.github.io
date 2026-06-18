@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ananyaontheshor — everything is a draft</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=VT323&family=Spectral:ital,wght@1,300;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#03050f;
+  --surface:#02060e;
+  --border:#0a1520;
+  --text:#c8d4e8;
+  --mid:#5a7a8a;
+  --dim:#2a3a4a;
+  --green:#4af0a0;
+  --green-mid:#2a7a4a;
+  --green-deep:#1a4a2a;
+  --purple:#6a4af0;
+  --purple-mid:#8a6aaa;
+}
+body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;overflow-x:hidden;}
+
+/* NAV */
+.nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid var(--border);background:var(--bg);position:relative;z-index:100;}
+.nav-brand{font-family:'VT323',monospace;font-size:22px;color:var(--green);letter-spacing:0.04em;text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'VT323',monospace;font-size:17px;color:#2a4a3a;text-decoration:none;letter-spacing:0.06em;transition:color 0.2s;}
+.nav-links a:hover{color:var(--green);}
+
+/* HERO */
+.hero{position:relative;min-height:500px;display:flex;align-items:center;overflow:hidden;background:var(--bg);}
+.hero canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
+.hero-inner{position:relative;z-index:2;padding:3rem 2.5rem;max-width:560px;}
+.pixel-hello{font-family:'VT323',monospace;font-size:15px;color:#2a5a3a;letter-spacing:0.12em;margin-bottom:1.25rem;}
+.cursor{display:inline-block;width:8px;height:13px;background:var(--green);vertical-align:text-bottom;animation:blink 1s step-end infinite;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-name{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:58px;line-height:1.0;color:#e8f0ff;margin-bottom:0.5rem;}
+.hero-handle{font-family:'VT323',monospace;font-size:18px;color:#1a3a2a;letter-spacing:0.08em;margin-bottom:1.5rem;}
+
+/* RIPPLE */
+.ripple-inline{display:inline-flex;align-items:center;gap:14px;margin-bottom:1.5rem;}
+.rp-wrap{position:relative;width:44px;height:44px;flex-shrink:0;}
+.rp{position:absolute;border-radius:50%;border:1px solid;top:50%;left:50%;transform:translate(-50%,-50%);animation:rp-anim 3s ease-out infinite;}
+.rp1{width:8px;height:8px;border-color:var(--green);animation-delay:0s;}
+.rp2{width:18px;height:18px;border-color:var(--green-mid);animation-delay:0.5s;}
+.rp3{width:30px;height:30px;border-color:#1a4a2a;animation-delay:1s;}
+.rp4{width:42px;height:42px;border-color:#0a2a18;animation-delay:1.5s;}
+.rp-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:4px;height:4px;border-radius:50%;background:var(--green);animation:breathe 2s ease-in-out infinite;}
+@keyframes rp-anim{0%{opacity:0.9;}100%{opacity:0.05;}}
+@keyframes breathe{0%,100%{opacity:0.4;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.6);}}
+.hero-intro{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:19px;color:#6a8aaa;line-height:1.8;}
+.hero-intro em{color:#b8d8c8;font-style:normal;}
+
+/* SECTIONS */
+.section{padding:3rem 2.5rem;position:relative;}
+.sec-label{font-family:'VT323',monospace;font-size:14px;letter-spacing:0.14em;color:#1a3a2a;display:flex;align-items:center;gap:10px;margin-bottom:2rem;}
+.sec-label::after{content:'';flex:1;height:1px;background:#0a1a14;}
+
+/* FEED */
+.feed{display:flex;flex-direction:column;gap:1px;background:#0a1520;}
+.feed-item{background:#03070e;padding:1.5rem;display:grid;grid-template-columns:60px 1fr;gap:1.25rem;cursor:pointer;transition:background 0.2s;align-items:start;text-decoration:none;color:inherit;}
+.feed-item:hover{background:#050c16;}
+.feed-item:hover .fi-title{color:#d0e8d8;}
+.fi-meta{display:flex;flex-direction:column;gap:5px;padding-top:3px;}
+.fi-date{font-family:'VT323',monospace;font-size:13px;color:#1a3a2a;letter-spacing:0.04em;}
+.fi-type{font-family:'VT323',monospace;font-size:12px;padding:2px 6px;border:1px solid;display:inline-block;margin-top:3px;}
+.fi-type.poem{color:var(--purple);border-color:#2a1a4a;}
+.fi-type.essay{color:#4a8a6a;border-color:#1a3a2a;}
+.fi-type.project{color:var(--green);border-color:var(--green-deep);}
+.fi-type.opinion{color:var(--purple-mid);border-color:#2a1a3a;}
+.fi-type.thought{color:#4a6aaa;border-color:#1a2a4a;}
+.fi-title{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:21px;color:#7a9ab8;line-height:1.3;transition:color 0.2s;margin-bottom:0.4rem;}
+.fi-excerpt{font-family:'Crimson Pro',serif;font-weight:300;font-size:14px;color:var(--dim);line-height:1.7;}
+.fi-excerpt em{color:#3a5a4a;font-style:italic;}
+
+/* SPACE STRIP */
+.space-strip{position:relative;height:80px;overflow:hidden;background:#02030a;border-top:1px solid #0a1014;border-bottom:1px solid #0a1014;display:flex;align-items:center;justify-content:center;}
+.space-strip canvas{position:absolute;top:0;left:0;width:100%;height:100%;}
+.space-quote{position:relative;z-index:2;font-family:'Spectral',serif;font-style:italic;font-weight:300;font-size:14px;color:#1a2a3a;letter-spacing:0.06em;}
+
+/* ABOUT */
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.about-prose{font-family:'Spectral',serif;font-style:italic;font-weight:300;font-size:18px;color:var(--mid);line-height:2;}
+.about-prose em{color:#a0c8b8;font-style:normal;}
+.about-prose .gap{display:block;height:1rem;}
+.about-section-title{font-family:'VT323',monospace;font-size:13px;color:#1a3a2a;letter-spacing:0.12em;margin-bottom:0.75rem;margin-top:1.5rem;}
+.about-section-title:first-child{margin-top:0;}
+.about-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.atag{font-family:'VT323',monospace;font-size:14px;color:#1a3a2a;border:1px solid #0a1a14;padding:2px 9px;}
+.atag.lit{color:var(--green);border-color:var(--green-deep);}
+.atag.dim{color:#1a2a3a;}
+.hobbies-list{display:flex;flex-direction:column;gap:0.4rem;}
+.hobby{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:15px;color:var(--dim);display:flex;align-items:center;gap:8px;}
+.hobby::before{content:'·';color:#1a3a2a;font-style:normal;}
+.hobby .status{font-family:'VT323',monospace;font-size:12px;color:#1a2a1a;margin-left:4px;}
+
+/* FOOTER */
+.footer{padding:1.75rem 2.5rem;border-top:1px solid #0a1014;background:#02030a;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-family:'VT323',monospace;font-size:19px;color:#1a3a2a;letter-spacing:0.04em;}
+.footer-right{font-family:'VT323',monospace;font-size:12px;color:#0f1f14;letter-spacing:0.06em;}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .hero-name{font-size:38px;}
+  .about-wrap{grid-template-columns:1fr;gap:2rem;}
+  .nav-links{gap:1rem;}
+  .feed-item{grid-template-columns:1fr;}
+  .fi-meta{flex-direction:row;align-items:center;gap:8px;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="nav-brand">&gt; ananyaontheshor</a>
+  <ul class="nav-links">
+    <li><a href="#everything">everything</a></li>
+    <li><a href="#about">about</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <canvas id="starfield"></canvas>
+  <canvas id="ocean"></canvas>
+  <div class="hero-inner">
+    <p class="pixel-hello">&gt; welcome<span class="cursor"></span></p>
+    <h1 class="hero-name">ananya</h1>
+    <p class="hero-handle">@ananyaontheshor</p>
+    <div class="ripple-inline">
+      <div class="rp-wrap">
+        <div class="rp rp1"></div>
+        <div class="rp rp2"></div>
+        <div class="rp rp3"></div>
+        <div class="rp rp4"></div>
+        <div class="rp-center"></div>
+      </div>
+      <p class="hero-intro">
+        writer. builder. <em>curious about everything.</em><br>
+        this is where i put it all.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="everything" style="background:#02060e;">
+  <p class="sec-label">[ everything, in order ]</p>
+  <div class="feed">
+    <a class="feed-item" href="#">
+      <div class="fi-meta">
+        <span class="fi-date">jun 26</span>
+        <span class="fi-type essay">essay</span>
+      </div>
+      <div>
+        <p class="fi-title">on building things you don't fully understand yet</p>
+        <p class="fi-excerpt">i've shipped three things this year that i couldn't fully explain. <em>here's what i learned about that.</em></p>
+      </div>
+    </a>
+    <a class="feed-item" href="#">
+      <div class="fi-meta">
+        <span class="fi-date">may 26</span>
+        <span class="fi-type project">project</span>
+      </div>
+      <div>
+        <p class="fi-title">NyayaAI — making legal research less impossible</p>
+        <p class="fi-excerpt">a multi-agent platform for indian legal research. built it because i needed it. <em>then kept going.</em></p>
+      </div>
+    </a>
+    <a class="feed-item" href="#">
+      <div class="fi-meta">
+        <span class="fi-date">apr 26</span>
+        <span class="fi-type poem">poem</span>
+      </div>
+      <div>
+        <p class="fi-title">inventory</p>
+        <p class="fi-excerpt">a list of things i own, things i've lost, things i'm not sure about. <em>also: a poem.</em></p>
+      </div>
+    </a>
+    <a class="feed-item" href="#">
+      <div class="fi-meta">
+        <span class="fi-date">apr 26</span>
+        <span class="fi-type opinion">opinion</span>
+      </div>
+      <div>
+        <p class="fi-title">AI governance is a design problem and nobody is treating it like one</p>
+        <p class="fi-excerpt">not a technical rant. <em>a frustrated one.</em></p>
+      </div>
+    </a>
+    <a class="feed-item" href="#">
+      <div class="fi-meta">
+        <span class="fi-date">mar 26</span>
+        <span class="fi-type thought">thought</span>
+      </div>
+      <div>
+        <p class="fi-title">the calligraphy phase lasted eleven days</p>
+        <p class="fi-excerpt">bought the pens. watched six videos. made one beautiful letter A. <em>never opened the kit again.</em></p>
+      </div>
+    </a>
+    <a class="feed-item" href="#">
+      <div class="fi-meta">
+        <span class="fi-date">feb 26</span>
+        <span class="fi-type poem">poem</span>
+      </div>
+      <div>
+        <p class="fi-title">the shore at 2am</p>
+        <p class="fi-excerpt"><em>shor means noise. it also means shore. i've been thinking about that for three years.</em></p>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="space-strip">
+  <canvas id="stars2"></canvas>
+  <p class="space-quote">// somewhere between the first draft and the last star</p>
+</div>
+
+<section class="section" id="about" style="background:#030710;">
+  <p class="sec-label">[ about this person ]</p>
+  <div class="about-wrap">
+    <p class="about-prose">
+      I write things.<em class="gap"></em>
+      I build things.<em class="gap"></em>
+      Sometimes the things I build become the things I write about, and sometimes the writing explains why I built them.<em class="gap"></em>
+      I'm interested in <em>how systems work</em> and <em>what happens to people inside them.</em><em class="gap"></em>
+      This page is where I figure that out, in public.
+    </p>
+    <div>
+      <p class="about-section-title">// currently into</p>
+      <div class="about-tags">
+        <span class="atag lit">games</span>
+        <span class="atag lit">ocean things</span>
+        <span class="atag lit">old books</span>
+        <span class="atag lit">painting</span>
+        <span class="atag">poetry</span>
+        <span class="atag">stars</span>
+        <span class="atag">AI + law</span>
+        <span class="atag dim">photography</span>
+      </div>
+      <p class="about-section-title" style="margin-top:1.25rem;">// things i started and abandoned</p>
+      <div class="hobbies-list">
+        <span class="hobby">calligraphy <span class="status">[11 days]</span></span>
+        <span class="hobby">the guitar <span class="status">[one chord]</span></span>
+        <span class="hobby">bullet journaling <span class="status">[beautiful, briefly]</span></span>
+        <span class="hobby">learning korean <span class="status">[duolingo streak: 0]</span></span>
+        <span class="hobby">film photography <span class="status">[one roll]</span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <span class="footer-brand">&gt; ananyaontheshor_</span>
+  <span class="footer-right">everything is a draft. // 2026</span>
+</footer>
+
+<script>
+function makeStars(id,n,h){
+  const c=document.getElementById(id);
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  c.width=window.innerWidth;c.height=h;
+  const S=Array.from({length:n},()=>({
+    x:Math.random()*c.width,y:Math.random()*h,
+    r:Math.random()*1.1+0.2,a:Math.random(),
+    da:(Math.random()-0.5)*0.012,
+    dx:(Math.random()-0.5)*0.06,dy:(Math.random()-0.5)*0.02,
+    col:Math.random()>0.88?'#4af0a0':Math.random()>0.75?'#90b0f0':'#c0d0f0'
+  }));
+  (function draw(){
+    ctx.clearRect(0,0,c.width,h);
+    S.forEach(s=>{
+      s.a+=s.da;if(s.a>1||s.a<0)s.da*=-1;
+      s.x=(s.x+s.dx+c.width)%c.width;s.y=(s.y+s.dy+h)%h;
+      ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle=s.col;ctx.globalAlpha=Math.max(0,Math.min(1,s.a));ctx.fill();
+    });
+    ctx.globalAlpha=1;requestAnimationFrame(draw);
+  })();
+}
+
+(function initOcean(){
+  const c=document.getElementById('ocean');
+  if(!c)return;
+  const ctx=c.getContext('2d');
+  const W=window.innerWidth;
+  const hero=document.querySelector('.hero');
+  const H=hero?hero.offsetHeight:500;
+  c.width=W;c.height=H;
+  const layers=[
+    {speed:0.4,amp:10,freq:0.012,phase:0,y:0.74,color:'#020e1e',alpha:1.0},
+    {speed:0.6,amp:8,freq:0.018,phase:1.2,y:0.79,color:'#031527',alpha:0.9},
+    {speed:0.9,amp:6,freq:0.022,phase:2.5,y:0.83,color:'#041e36',alpha:0.85},
+    {speed:1.2,amp:5,freq:0.028,phase:0.8,y:0.87,color:'#052540',alpha:0.8},
+    {speed:1.6,amp:4,freq:0.034,phase:3.1,y:0.90,color:'#062c4a',alpha:0.75},
+    {speed:2.0,amp:3,freq:0.040,phase:1.7,y:0.93,color:'#073352',alpha:0.7},
+  ];
+  const bio=Array.from({length:18},()=>({
+    x:Math.random()*W,baseY:0.78+Math.random()*0.14,
+    r:Math.random()*1.8+0.6,phase:Math.random()*Math.PI*2,
+    speed:0.3+Math.random()*0.5,drift:(Math.random()-0.5)*0.3,
+    col:Math.random()>0.5?'#4af0a0':'#a0f4e0'
+  }));
+  let t=0;
+  function drawWave(l,time){
+    const baseY=H*l.y;
+    ctx.beginPath();ctx.moveTo(0,H);
+    for(let x=0;x<=W;x+=2){
+      const y=baseY
+        +Math.sin(x*l.freq+time*l.speed+l.phase)*l.amp
+        +Math.sin(x*l.freq*0.6+time*l.speed*1.3+l.phase+1)*l.amp*0.4
+        +Math.sin(x*l.freq*1.8+time*l.speed*0.7+l.phase+2)*l.amp*0.2;
+      ctx.lineTo(x,y);
+    }
+    ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();
+    ctx.fillStyle=l.color;ctx.globalAlpha=l.alpha;ctx.fill();
+  }
+  (function draw(){
+    ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;
+    layers.forEach(l=>drawWave(l,t));
+    bio.forEach(p=>{
+      const wY=H*p.baseY+Math.sin(p.x*0.018+t*p.speed+p.phase)*6;
+      p.x=(p.x+p.drift+W)%W;
+      const pulse=0.15+0.55*(0.5+0.5*Math.sin(t*1.2+p.phase));
+      ctx.beginPath();ctx.arc(p.x,wY,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.col;ctx.globalAlpha=pulse;ctx.fill();
+      ctx.globalAlpha=pulse*0.3;
+      ctx.beginPath();ctx.arc(p.x,wY,p.r*2.5,0,Math.PI*2);ctx.fill();
+    });
+    ctx.globalAlpha=1;t+=0.018;requestAnimationFrame(draw);
+  })();
+})();
+
+const hero=document.querySelector('.hero');
+makeStars('starfield',200,hero?hero.offsetHeight:500);
+makeStars('stars2',60,80);
+</script>
+</body>
+</html>
