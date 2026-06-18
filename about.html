@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>about — ananyaontheshor</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=VT323&family=Spectral:ital,wght@1,300;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#080508;color:#e8d0e8;font-family:'Crimson Pro',serif;overflow-x:hidden;}
+
+.nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid #180a18;background:#080508;position:relative;z-index:100;}
+.nav-brand{font-family:'VT323',monospace;font-size:22px;color:#c080d0;letter-spacing:0.04em;text-decoration:none;text-shadow:0 0 10px rgba(160,80,180,0.3);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Crimson Pro',serif;font-style:italic;font-size:17px;color:#3a1a3a;text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:#c080d0;}
+
+.page-wrap{max-width:680px;margin:0 auto;padding:5rem 2.5rem 6rem;}
+
+.back-link{font-family:'VT323',monospace;font-size:15px;color:#3a1a3a;text-decoration:none;letter-spacing:0.06em;display:inline-block;margin-bottom:3rem;transition:color 0.2s;}
+.back-link:hover{color:#c080d0;}
+
+.page-title{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:52px;color:#f0e0f0;margin-bottom:3rem;line-height:1.0;}
+
+.prose{font-family:'Spectral',serif;font-style:italic;font-weight:300;font-size:19px;color:#6a3a6a;line-height:2.1;}
+.prose p{margin-bottom:1.75rem;}
+.prose em{color:#c090c0;font-style:normal;}
+.prose .gap{display:block;height:0.5rem;}
+
+.divider{height:1px;background:#180a18;margin:3rem 0;}
+
+.about-section-title{font-family:'VT323',monospace;font-size:13px;color:#3a1a3a;letter-spacing:0.12em;margin-bottom:1rem;margin-top:2rem;}
+.about-section-title:first-child{margin-top:0;}
+
+.about-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem;}
+.atag{font-family:'VT323',monospace;font-size:14px;color:#3a1a3a;border:1px solid #180a18;padding:2px 9px;}
+.atag.lit{color:#c080d0;border-color:#3a1a5a;}
+.atag.green{color:#4aaa60;border-color:#1a4a2a;}
+
+.hobbies-list{display:flex;flex-direction:column;gap:0.5rem;}
+.hobby{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:16px;color:#3a1a3a;display:flex;align-items:center;gap:8px;}
+.hobby::before{content:'·';color:#3a1a3a;font-style:normal;}
+.hobby .status{font-family:'VT323',monospace;font-size:12px;color:#200a20;margin-left:4px;}
+
+.closing{font-family:'VT323',monospace;font-size:14px;color:#2a0a2a;letter-spacing:0.08em;margin-top:3rem;}
+
+.footer{padding:1.75rem 2.5rem;border-top:1px solid #100810;background:#04020a;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-family:'VT323',monospace;font-size:19px;color:#3a1a3a;letter-spacing:0.04em;}
+.footer-right{font-family:'VT323',monospace;font-size:12px;color:#1a0a1a;letter-spacing:0.06em;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/index.html" class="nav-brand">&gt; ananyaontheshor</a>
+  <ul class="nav-links">
+    <li><a href="/index.html#everything">everything</a></li>
+    <li><a href="/about.html">about</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+  <a href="/index.html" class="back-link">&larr; back</a>
+
+  <h1 class="page-title">about this person</h1>
+
+  <div class="prose">
+    <p>I write things.</p>
+    <p>I build things.</p>
+    <p>Sometimes the things I build become the things I write about, and sometimes the writing explains why I built them. The line between the two is blurry and I've stopped trying to find it.</p>
+    <p>I'm interested in <em>how systems work</em> and <em>what happens to people inside them.</em> I've studied law, learned to read data, built tools that try to make inaccessible things legible. I'm not sure those are three different things.</p>
+    <p>I game. I paint sometimes. I pick up hobbies and abandon them with great enthusiasm. I've been writing poetry longer than I've been doing anything else, which probably explains something about me that I haven't figured out yet.</p>
+    <p>This page is called <em>ananyaontheshor</em>. Shor means noise. It also means shore. I've been thinking about that for a while.</p>
+    <p>I'm building this for me.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <p class="about-section-title">// currently into</p>
+  <div class="about-tags">
+    <span class="atag lit">games</span>
+    <span class="atag lit">ocean things</span>
+    <span class="atag green">old books</span>
+    <span class="atag green">painting</span>
+    <span class="atag">poetry</span>
+    <span class="atag">stars</span>
+    <span class="atag">AI + law</span>
+  </div>
+
+  <p class="about-section-title">// things i started and abandoned</p>
+  <div class="hobbies-list">
+    <span class="hobby">crocheting <span class="status">[almost finished one square]</span></span>
+    <span class="hobby">the violin <span class="status">[one screech]</span></span>
+    <span class="hobby">learning japanese <span class="status">[duolingo streak: also 0]</span></span>
+    <span class="hobby">photography <span class="status">[one roll, one photo in focus]</span></span>
+  </div>
+
+  <p class="closing">// ananyaontheshor — everything is a draft.</p>
+</div>
+
+<footer class="footer">
+  <span class="footer-brand">&gt; ananyaontheshor_</span>
+  <span class="footer-right">I'm building this for me. // 2026</span>
+</footer>
+
+</body>
+</html>
