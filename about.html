@@ -7,9 +7,10 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=VT323&family=Spectral:ital,wght@1,300;1,400&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
-:root{--bg:#080508;--s1:#0d080d;--s2:#100810;--border:#180a18;--b2:#200f20;--text:#e8d0e8;--mid:#8a6a8a;--dim:#3a1a3a;--green:#4aaa60;--green-d:#1a4a2a;--purple:#c080d0;--purple-d:#3a1a5a;--purple-m:#7a3a9a;--amber:#c0902a;--amber-d:#4a3010;}
+:root{--bg:#080508;--s1:#0d080d;--s2:#100810;--border:#180a18;--b2:#200f20;--text:#e8d0e8;--mid:#8a6a8a;--dim:#7a4a7a;--green:#4aaa60;--green-d:#1a4a2a;--purple:#c080d0;--purple-d:#3a1a5a;--purple-m:#7a3a9a;--amber:#c0902a;--amber-d:#4a3010;}
 body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;overflow-x:hidden;}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 2rem;border-bottom:1px solid var(--border);background:var(--bg);position:relative;z-index:100;}
+.nav{background:var(--bg);border-bottom:1px solid var(--border);position:relative;z-index:100;}
+.nav-inner{max-width:1280px;margin:0 auto;padding:1.25rem 2.5rem;display:flex;justify-content:space-between;align-items:center;}
 .nav-brand{font-family:'VT323',monospace;font-size:22px;color:var(--purple);letter-spacing:0.04em;text-decoration:none;text-shadow:0 0 10px rgba(160,80,180,0.3);}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{font-family:'Crimson Pro',serif;font-style:italic;font-size:16px;color:var(--dim);text-decoration:none;transition:color 0.2s;}
@@ -48,14 +49,16 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;over
 </head>
 <body>
 <nav class="nav">
+  <div class="nav-inner">
   <a href="/index.html" class="nav-brand">&gt; ananyaontheshor</a>
   <ul class="nav-links">
     <li><a href="/everything.html">everything</a></li>
     <li><a href="/about.html" class="active">about</a></li>
   </ul>
+  </div>
 </nav>
 <div class="top-wave"><canvas id="top-wave"></canvas></div>
-<div class="page-wrap">
+<div class="page-wrap" style="max-width:740px;margin:0 auto;">
   <div class="about-grid">
     <div class="portrait-wrap">
       <div class="portrait">
