@@ -26,11 +26,12 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;over
 .nav-links a{font-family:'Crimson Pro',serif;font-style:italic;font-size:16px;color:var(--dim);text-decoration:none;transition:color 0.2s;}
 .nav-links a:hover,.nav-links a.active{color:var(--purple);}
 
-.page-hero{position:relative;height:120px;overflow:hidden;background:var(--bg);display:flex;align-items:center;padding:0 2.5rem;}
+.page-hero{position:relative;height:120px;overflow:hidden;background:var(--bg);}
+.page-hero-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem;height:100%;display:flex;align-items:center;position:relative;z-index:2;}
 .page-hero canvas{position:absolute;top:0;left:0;width:100%;height:100%;}
-.page-hero-title{position:relative;z-index:2;font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:42px;color:#f0e0f0;}
+.page-hero-title{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:42px;color:#f0e0f0;}
 
-.section{padding:2.5rem 2.5rem;}
+.section{padding:2.5rem 0;}
 .sec-label{font-family:'VT323',monospace;font-size:14px;letter-spacing:0.14em;color:var(--dim);display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;}
 .sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
 
@@ -110,7 +111,8 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;over
 .mini-wave{position:relative;height:60px;overflow:hidden;background:var(--bg);}
 .mini-wave canvas{position:absolute;top:0;left:0;width:100%;height:100%;}
 
-.footer{padding:1.75rem 2.5rem;border-top:1px solid var(--border);background:#04020a;display:flex;justify-content:space-between;align-items:center;}
+.footer{padding:1.75rem 0;border-top:1px solid var(--border);background:#04020a;}
+.footer-inner{max-width:1280px;margin:0 auto;padding:0 2.5rem;display:flex;justify-content:space-between;align-items:center;}
 .footer-brand{font-family:'VT323',monospace;font-size:19px;color:var(--dim);letter-spacing:0.04em;}
 .footer-right{font-family:'VT323',monospace;font-size:12px;color:#9a7a9a;letter-spacing:0.06em;}
 
@@ -134,11 +136,11 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;over
 
 <div class="page-hero">
   <canvas id="page-wave"></canvas>
-  <h1 class="page-hero-title">everything, in order</h1>
+  <div class="page-hero-inner"><h1 class="page-hero-title">everything, in order</h1></div>
 </div>
 
-<section class="section" style="background:#0a060a;">
-  <div class="tag-filters">
+<section class="section" style="background:#0a060a;"><div style="max-width:1280px;margin:0 auto;padding:0 2.5rem;">
+  <div class="tag-filters" style="padding:0;">
     <span class="filter-tag active" data-type="all" data-tip="everything">all</span>
     <span class="filter-tag" data-type="noise" data-tip="opinions, rants, observations">noise</span>
     <span class="filter-tag" data-type="signal" data-tip="projects, things built">signal</span>
@@ -188,8 +190,10 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;over
 <div class="mini-wave"><canvas id="wave-bottom"></canvas></div>
 
 <footer class="footer">
+  <div class="footer-inner">
   <span class="footer-brand">&gt; ananyaontheshor_</span>
   <span class="footer-right">I'm building this for me. // 2026</span>
+  </div>
 </footer>
 
 <script>
