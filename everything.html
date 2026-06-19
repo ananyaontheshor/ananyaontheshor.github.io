@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>everything — ananyaontheshor</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=VT323&family=Spectral:ital,wght@1,300;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#080508;--s1:#0d080d;--s2:#100810;--border:#180a18;--b2:#200f20;
+  --text:#e8d0e8;--mid:#8a6a8a;--dim:#7a4a7a;
+  --green:#4aaa60;--green-d:#1a4a2a;--green-m:#2a6a3a;
+  --red:#c04060;--red-d:#5a1a2a;--red-m:#8a2040;
+  --purple:#c080d0;--purple-d:#3a1a5a;--purple-m:#7a3a9a;
+  --blue:#6090d0;--blue-d:#1a2a5a;--blue-m:#3a5a9a;
+  --lav:#b090d0;--lav-d:#2a1a4a;--lav-m:#6a4a8a;
+  --amber:#c0902a;--amber-d:#4a3010;--amber-m:#8a6020;
+}
+body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;overflow-x:hidden;}
+.nav{background:var(--bg);border-bottom:1px solid var(--border);position:relative;z-index:100;}
+.nav-inner{max-width:1280px;margin:0 auto;padding:1.25rem 2.5rem;display:flex;justify-content:space-between;align-items:center;}
+.nav-brand{font-family:'VT323',monospace;font-size:22px;color:var(--purple);letter-spacing:0.04em;text-decoration:none;text-shadow:0 0 10px rgba(160,80,180,0.3);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Crimson Pro',serif;font-style:italic;font-size:16px;color:var(--dim);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover,.nav-links a.active{color:var(--purple);}
+
+.page-hero{position:relative;height:120px;overflow:hidden;background:var(--bg);display:flex;align-items:center;padding:0 2.5rem;}
+.page-hero canvas{position:absolute;top:0;left:0;width:100%;height:100%;}
+.page-hero-title{position:relative;z-index:2;font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:42px;color:#f0e0f0;}
+
+.section{padding:2.5rem 2.5rem;}
+.sec-label{font-family:'VT323',monospace;font-size:14px;letter-spacing:0.14em;color:var(--dim);display:flex;align-items:center;gap:10px;margin-bottom:1.5rem;}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+.tag-filters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem;}
+.filter-tag{font-family:'VT323',monospace;font-size:13px;padding:3px 12px;border:1px solid var(--border);color:var(--dim);cursor:pointer;transition:all 0.2s;background:transparent;text-decoration:none;display:inline-block;}
+.filter-tag:hover{color:var(--text);border-color:var(--mid);}
+.filter-tag.active{color:var(--text);}
+.filter-tag[data-type="all"].active{color:var(--purple);border-color:var(--purple-d);}
+.filter-tag[data-type="noise"].active{color:var(--red);border-color:var(--red-d);background:rgba(160,40,80,0.06);}
+.filter-tag[data-type="signal"].active{color:var(--green);border-color:var(--green-d);background:rgba(74,170,96,0.06);}
+.filter-tag[data-type="shore"].active{color:var(--blue);border-color:var(--blue-d);background:rgba(96,144,208,0.06);}
+.filter-tag[data-type="depth"].active{color:var(--amber);border-color:var(--amber-d);background:rgba(192,144,42,0.06);}
+
+.filter-tag{position:relative;}
+.filter-tag::after{
+  content:attr(data-tip);
+  position:absolute;
+  bottom:calc(100% + 8px);
+  left:50%;
+  transform:translateX(-50%);
+  background:#100810;
+  border:1px solid #200f20;
+  color:#b090d0;
+  font-family:'VT323',monospace;
+  font-size:12px;
+  letter-spacing:0.06em;
+  padding:4px 10px;
+  white-space:nowrap;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 0.15s;
+  z-index:100;
+}
+.filter-tag:hover::after{opacity:1;}
+
+.filter-tag[data-type="drift"].active{color:var(--lav);border-color:var(--lav-d);background:rgba(176,144,208,0.06);}
+
+.feed{display:flex;flex-direction:column;gap:1px;background:var(--b2);}
+.feed-item{background:var(--s2);padding:1.5rem;display:grid;grid-template-columns:60px 1fr;gap:1.25rem;cursor:pointer;transition:background 0.2s;align-items:start;text-decoration:none;color:inherit;border-left:2px solid transparent;}
+.feed-item:hover{background:#140a14;}
+.feed-item[data-type="noise"]{border-left-color:var(--red-d);}
+.feed-item[data-type="signal"]{border-left-color:var(--green-d);}
+.feed-item[data-type="shore"]{border-left-color:var(--blue-d);}
+.feed-item[data-type="depth"]{border-left-color:var(--amber-d);}
+.feed-item[data-type="drift"]{border-left-color:var(--lav-d);}
+.feed-item:hover[data-type="noise"]{border-left-color:var(--red-m);}
+.feed-item:hover[data-type="signal"]{border-left-color:var(--green-m);}
+.feed-item:hover[data-type="shore"]{border-left-color:var(--blue-m);}
+.feed-item:hover[data-type="depth"]{border-left-color:var(--amber-m);}
+.feed-item:hover[data-type="drift"]{border-left-color:var(--lav-m);}
+.feed-item.hidden{display:none;}
+
+.fi-meta{display:flex;flex-direction:column;gap:5px;padding-top:3px;}
+.fi-date{font-family:'VT323',monospace;font-size:13px;color:#5a3a5a;letter-spacing:0.04em;}
+.fi-type{font-family:'VT323',monospace;font-size:11px;padding:2px 6px;border:1px solid;display:inline-block;margin-top:3px;}
+.fi-type.noise{color:var(--red);border-color:var(--red-d);}
+.fi-type.signal{color:var(--green);border-color:var(--green-d);}
+.fi-type.shore{color:var(--blue);border-color:var(--blue-d);}
+.fi-type.depth{color:var(--amber);border-color:var(--amber-d);}
+.fi-type.drift{color:var(--lav);border-color:var(--lav-d);}
+.fi-title{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:21px;line-height:1.3;transition:color 0.2s;margin-bottom:0.4rem;}
+.feed-item[data-type="noise"] .fi-title{color:#7a3050;}
+.feed-item[data-type="signal"] .fi-title{color:#3a6a4a;}
+.feed-item[data-type="shore"] .fi-title{color:#3a5a8a;}
+.feed-item[data-type="depth"] .fi-title{color:#8a6020;}
+.feed-item[data-type="drift"] .fi-title{color:#6a508a;}
+.feed-item:hover .fi-title{filter:brightness(1.4);}
+.fi-excerpt{font-family:'Crimson Pro',serif;font-weight:300;font-size:14px;color:#6a4a6a;line-height:1.7;}
+.fi-excerpt em{color:#5a3a5a;font-style:italic;}
+
+.pagination{display:flex;align-items:center;justify-content:space-between;padding:2rem 0 0;margin-top:1px;border-top:1px solid var(--border);}
+.pg-btn{font-family:'VT323',monospace;font-size:15px;color:var(--dim);background:none;border:1px solid var(--border);padding:4px 14px;cursor:pointer;transition:all 0.2s;}
+.pg-btn:hover:not(:disabled){color:var(--purple);border-color:var(--purple-d);}
+.pg-btn:disabled{opacity:0.2;cursor:default;}
+.pg-info{font-family:'VT323',monospace;font-size:13px;color:var(--dim);letter-spacing:0.08em;}
+
+.mini-wave{position:relative;height:60px;overflow:hidden;background:var(--bg);}
+.mini-wave canvas{position:absolute;top:0;left:0;width:100%;height:100%;}
+
+.footer{padding:1.75rem 2.5rem;border-top:1px solid var(--border);background:#04020a;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-family:'VT323',monospace;font-size:19px;color:var(--dim);letter-spacing:0.04em;}
+.footer-right{font-family:'VT323',monospace;font-size:12px;color:#9a7a9a;letter-spacing:0.06em;}
+
+@media(max-width:640px){
+  .feed-item{grid-template-columns:1fr;}
+  .fi-meta{flex-direction:row;align-items:center;gap:8px;}
+  .tag-filters{gap:4px;}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+  <a href="/index.html" class="nav-brand">&gt; ananyaontheshor</a>
+  <ul class="nav-links">
+    <li><a href="/everything.html" class="active">everything</a></li>
+    <li><a href="/about.html">about</a></li>
+  </ul>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <canvas id="page-wave"></canvas>
+  <h1 class="page-hero-title">everything, in order</h1>
+</div>
+
+<section class="section" style="background:#0a060a;">
+  <div class="tag-filters">
+    <span class="filter-tag active" data-type="all" data-tip="everything">all</span>
+    <span class="filter-tag" data-type="noise" data-tip="opinions, rants, observations">noise</span>
+    <span class="filter-tag" data-type="signal" data-tip="projects, things built">signal</span>
+    <span class="filter-tag" data-type="shore" data-tip="poems">shore</span>
+    <span class="filter-tag" data-type="depth" data-tip="personal essays, long reads">depth</span>
+    <span class="filter-tag" data-type="drift" data-tip="thoughts, fragments, unfinished">drift</span>
+  </div>
+
+  <div class="feed" id="feed">
+    <a class="feed-item" href="/posts/depth/part1.html" data-type="depth">
+      <div class="fi-meta"><span class="fi-date">jun 26</span><span class="fi-type depth">depth</span></div>
+      <div>
+        <p class="fi-title">five years of the wrong thing (and what I loved about it anyway)</p>
+        <p class="fi-excerpt">i finished with 65%. the first thing i felt was certainty. <em>not about what i wanted. just about what i didn't.</em></p>
+      </div>
+    </a>
+    <a class="feed-item" href="/posts/depth/part2.html" data-type="depth">
+      <div class="fi-meta"><span class="fi-date">jun 26</span><span class="fi-type depth">depth</span></div>
+      <div>
+        <p class="fi-title">the tech thread (or: how i got here without meaning to)</p>
+        <p class="fi-excerpt">gaming since 13. a deleted linux install. 94.14 percentile on the one exam i actually wanted to pass. <em>the machinery works differently when you want something.</em></p>
+      </div>
+    </a>
+    <a class="feed-item" href="/posts/depth/part3.html" data-type="depth">
+      <div class="fi-meta"><span class="fi-date">jun 26</span><span class="fi-type depth">depth</span></div>
+      <div>
+        <p class="fi-title">right now (a work in progress)</p>
+        <p class="fi-excerpt">58%. the job search. the tiredness. and the decision to build anyway. <em>i don't fully understand what my life is yet. but i'm starting to think that's okay.</em></p>
+      </div>
+    </a>
+    <a class="feed-item" href="/posts/signal/nyayaai.html" data-type="signal">
+      <div class="fi-meta"><span class="fi-date">may 26</span><span class="fi-type signal">signal</span></div>
+      <div>
+        <p class="fi-title">NyayaAI — making legal research less impossible</p>
+        <p class="fi-excerpt">indian legal research is broken in a specific, quiet way. so i built an ai layer on top of it. <em>judgment analyser, compliance checker, contract reviewer, correlate.</em></p>
+      </div>
+    </a>
+  </div>
+
+  <div class="pagination">
+    <button class="pg-btn" id="prev-btn" disabled>&larr; prev</button>
+    <span class="pg-info" id="pg-info">page 1 of 1</span>
+    <button class="pg-btn" id="next-btn" disabled>next &rarr;</button>
+  </div>
+</section>
+
+<div class="mini-wave"><canvas id="wave-bottom"></canvas></div>
+
+<footer class="footer">
+  <span class="footer-brand">&gt; ananyaontheshor_</span>
+  <span class="footer-right">I'm building this for me. // 2026</span>
+</footer>
+
+<script>
+function makeMiniWave(id,yStart){
+  const c=document.getElementById(id);if(!c)return;
+  const ctx=c.getContext('2d');const W=window.innerWidth;const H=c.parentElement.offsetHeight||60;
+  c.width=W;c.height=H;
+  const ys=yStart||0.35;
+  const layers=[{speed:0.5,amp:6,freq:0.015,phase:0,y:ys,color:'#0d0218',alpha:0.9},{speed:0.8,amp:5,freq:0.02,phase:1.5,y:ys+0.17,color:'#120320',alpha:0.85},{speed:1.2,amp:4,freq:0.025,phase:3,y:ys+0.33,color:'#180428',alpha:0.8},{speed:1.8,amp:3,freq:0.032,phase:0.8,y:ys+0.47,color:'#1e0530',alpha:0.75}];
+  const bio=Array.from({length:8},()=>({x:Math.random()*W,baseY:ys+0.25+Math.random()*0.2,r:Math.random()*1.2+0.4,phase:Math.random()*Math.PI*2,speed:0.4+Math.random()*0.4,drift:(Math.random()-0.5)*0.2,col:Math.random()>0.5?'#c080d0':'#9060b0'}));
+  let t=0;
+  (function draw(){ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;layers.forEach(l=>{const bY=H*l.y;ctx.beginPath();ctx.moveTo(0,H);for(let x=0;x<=W;x+=2){const y=bY+Math.sin(x*l.freq+t*l.speed+l.phase)*l.amp+Math.sin(x*l.freq*1.5+t*l.speed*0.7+l.phase+1)*l.amp*0.3;ctx.lineTo(x,y);}ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();ctx.fillStyle=l.color;ctx.globalAlpha=l.alpha;ctx.fill();});bio.forEach(p=>{const wY=H*p.baseY+Math.sin(p.x*0.02+t*p.speed+p.phase)*3;p.x=(p.x+p.drift+W)%W;const pulse=0.1+0.4*(0.5+0.5*Math.sin(t*1.5+p.phase));ctx.beginPath();ctx.arc(p.x,wY,p.r,0,Math.PI*2);ctx.fillStyle=p.col;ctx.globalAlpha=pulse;ctx.fill();});ctx.globalAlpha=1;t+=0.02;requestAnimationFrame(draw);})();
+}
+makeMiniWave('page-wave',0.1);
+makeMiniWave('wave-bottom',0.35);
+
+const ITEMS_PER_PAGE=8;let currentFilter='all';let currentPage=1;
+function getVisible(){const all=[...document.querySelectorAll('.feed-item')];return currentFilter==='all'?all:all.filter(i=>i.dataset.type===currentFilter);}
+function updateFeed(){const all=[...document.querySelectorAll('.feed-item')];const visible=getVisible();const totalPages=Math.max(1,Math.ceil(visible.length/ITEMS_PER_PAGE));if(currentPage>totalPages)currentPage=1;const start=(currentPage-1)*ITEMS_PER_PAGE;const pageItems=visible.slice(start,start+ITEMS_PER_PAGE);all.forEach(i=>i.classList.add('hidden'));pageItems.forEach(i=>i.classList.remove('hidden'));document.getElementById('pg-info').textContent=`page ${currentPage} of ${totalPages}`;document.getElementById('prev-btn').disabled=currentPage<=1;document.getElementById('next-btn').disabled=currentPage>=totalPages;}
+document.querySelectorAll('.filter-tag').forEach(tag=>{tag.addEventListener('click',()=>{document.querySelectorAll('.filter-tag').forEach(t=>t.classList.remove('active'));tag.classList.add('active');currentFilter=tag.dataset.type;currentPage=1;updateFeed();});});
+document.getElementById('prev-btn').addEventListener('click',()=>{if(currentPage>1){currentPage--;updateFeed();}});
+document.getElementById('next-btn').addEventListener('click',()=>{const visible=getVisible();const totalPages=Math.ceil(visible.length/ITEMS_PER_PAGE);if(currentPage<totalPages){currentPage++;updateFeed();}});
+
+// Handle URL filter param
+const params=new URLSearchParams(window.location.search);const filterParam=params.get('filter');
+if(filterParam){const tag=document.querySelector(`.filter-tag[data-type="${filterParam}"]`);if(tag){document.querySelectorAll('.filter-tag').forEach(t=>t.classList.remove('active'));tag.classList.add('active');currentFilter=filterParam;}}
+updateFeed();
+</script>
+</body>
+</html>

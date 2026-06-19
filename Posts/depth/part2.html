@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>the tech thread (or: how i got here without meaning to) — ananyaontheshor</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=VT323&family=Spectral:ital,wght@1,300;1,400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{--bg:#080508;--s1:#0d080d;--s2:#100810;--border:#180a18;--b2:#200f20;--text:#e8d0e8;--mid:#8a6a8a;--dim:#7a4a7a;--green:#4aaa60;--green-d:#1a4a2a;--red:#c04060;--red-d:#5a1a2a;--purple:#c080d0;--purple-d:#3a1a5a;--purple-m:#7a3a9a;--blue:#6090d0;--blue-d:#1a2a5a;--lav:#b090d0;--lav-d:#2a1a4a;--amber:#c0902a;--amber-d:#4a3010;--amber-m:#8a6020;}
+body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;overflow-x:hidden;}
+.nav{background:var(--bg);border-bottom:1px solid var(--border);position:relative;z-index:100;}
+.nav-inner{max-width:1280px;margin:0 auto;padding:1.25rem 2.5rem;display:flex;justify-content:space-between;align-items:center;}
+.nav-brand{font-family:'VT323',monospace;font-size:22px;color:var(--purple);letter-spacing:0.04em;text-decoration:none;text-shadow:0 0 10px rgba(160,80,180,0.3);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Crimson Pro',serif;font-style:italic;font-size:16px;color:var(--dim);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--purple);}
+.top-wave{position:relative;height:80px;overflow:hidden;background:var(--bg);}
+.top-wave canvas{position:absolute;top:0;left:0;width:100%;height:100%;}
+.post-wrap{max-width:680px;margin:0 auto;padding:3rem 2.5rem 5rem;}
+.breadcrumb{display:flex;gap:0.75rem;align-items:center;margin-bottom:2.5rem;font-family:'VT323',monospace;font-size:13px;color:#8a6a8a;flex-wrap:wrap;}
+.breadcrumb a{color:#8a6a8a;text-decoration:none;transition:color 0.2s;}
+.breadcrumb a:hover{color:var(--purple);}
+.breadcrumb span{color:#5a3a5a;}
+.post-type{font-family:'VT323',monospace;font-size:13px;padding:2px 8px;border:1px solid;display:inline-block;margin-bottom:1.5rem;}
+.post-type.depth{color:var(--amber);border-color:var(--amber-d);}
+.post-type.signal{color:var(--green);border-color:var(--green-d);}
+.post-title{font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:42px;color:#f0e0f0;line-height:1.1;margin-bottom:0.75rem;}
+.post-date{font-family:'VT323',monospace;font-size:13px;color:#9a7a9a;margin-bottom:2.5rem;display:block;}
+.divider{height:1px;background:var(--border);margin:2.5rem 0;}
+.post-body{font-family:'Spectral',serif;font-style:italic;font-weight:300;font-size:18px;color:#c0a0c0;line-height:2;}
+.post-body p{margin-bottom:1.5rem;}
+.post-body em{color:#e0c0e0;font-style:normal;}
+.post-body strong{color:var(--text);font-weight:400;}
+.post-body a{color:var(--green);text-decoration:none;border-bottom:1px solid var(--green-d);transition:border-color 0.2s;}
+.post-body a:hover{border-bottom-color:var(--green);}
+.series-nav{display:flex;justify-content:space-between;align-items:center;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);gap:1rem;flex-wrap:wrap;}
+.series-nav a{font-family:'VT323',monospace;font-size:13px;color:#9a7a9a;text-decoration:none;transition:color 0.2s;letter-spacing:0.06em;}
+.series-nav a:hover{color:var(--purple);}
+.series-nav .center{font-family:'VT323',monospace;font-size:12px;color:#6a4a6a;text-align:center;}
+.series-nav .center a{color:#9a7a9a;}
+.series-nav .center a:hover{color:var(--amber);}
+.bottom-wave{position:relative;height:80px;overflow:hidden;background:var(--bg);}
+.bottom-wave canvas{position:absolute;top:0;left:0;width:100%;height:100%;}
+.footer{padding:1.75rem 2.5rem;border-top:1px solid var(--border);background:#04020a;display:flex;justify-content:space-between;align-items:center;}
+.footer-brand{font-family:'VT323',monospace;font-size:19px;color:var(--dim);letter-spacing:0.04em;}
+.footer-right{font-family:'VT323',monospace;font-size:12px;color:#9a7a9a;letter-spacing:0.06em;}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-inner">
+  <a href="../../index.html" class="nav-brand">&gt; ananyaontheshor</a>
+  <ul class="nav-links">
+    <li><a href="../../everything.html">everything</a></li>
+    <li><a href="../../about.html">about</a></li>
+  </ul>
+  </div>
+</nav>
+<div class="top-wave"><canvas id="top-wave"></canvas></div>
+<div class="post-wrap" style="max-width:740px;margin:0 auto;">
+  <div class="breadcrumb">
+    <a href="../../index.html">home</a><span>/</span>
+    <a href="../../everything.html">everything</a><span>/</span>
+    <a href="series.html">on getting where i didn't know i'd be</a><span>/</span>
+    <span>the tech thread (or: how i got here without meaning to)</span>
+  </div>
+  <span class="post-type depth">depth — personal essays</span>
+  <h1 class="post-title">the tech thread (or: how i got here without meaning to)</h1>
+  <span class="post-date">jun 2026</span>
+  <div class="divider"></div>
+  <div class="post-body">
+    <p>I was thirteen when we got a PC. The first game I remember playing was Shark Attack, barely a game really, just a thing that moved on a screen. But I was hooked immediately on the idea of it. That there was a world inside the machine that I could enter.</p>
+    <p>By the time I had my own laptop I had played my way through Rollercoaster Tycoon, airport simulators, aquarium managers, and most of the Assassin's Creed series. That last one became something close to a home. I could be anyone in those games. A fashionista, a thief, a treasure hunter, an assassin. I could manage things, build things, make decisions that actually mattered within the rules of the world. Nobody was grading me on it. Nobody was watching me stumble.</p>
+    <p>I went back to games during law school. Stayed up all night sometimes, which I knew was making things worse, and did it anyway. The guilt and the relief came together. I knew I should be working. I also knew that working meant doing something my brain had quietly decided it would not cooperate with. Games were the only place where I was competent, confident, in control.</p>
+    <p>Around the same time I tried dual-booting my laptop with Linux. I loved the process of it, more than the result, honestly. The different distributions, the way the system worked, the feeling of being slightly closer to how the machine actually thought. I didn't have enough time to go deep. I was careful not to break anything. Eventually I just deleted it, which felt like a small defeat I didn't tell anyone about.</p>
+    <p>Then I scored 94.14 percentile on CAT.</p>
+    <p>It was the first exam I had ever wanted to pass. The first one I had studied for without my brain going quiet and grey. I don't think that's a coincidence. I think when you actually want something, the machinery works differently.</p>
+    <p>The MBA had data in it. Python, SQL, Power BI, Tableau. Beginner stuff, surface level, but I loved it immediately in the way I had loved dual-booting Linux. Not because I was good at it yet, but because I wanted to be. I kept tinkering after class. I built small things. I broke them and fixed them.</p>
+    <p>I couldn't give it as much time as I wanted. Grades needed maintaining. The tinkering got quieter.</p>
+    <p>But it didn't stop.</p>
+  </div>
+  <div class="series-nav">
+    <a href="part1.html">&larr; five years of the wrong thing</a>
+    <div class="center">part of <a href="series.html">on getting where i didn't know i'd be</a></div>
+    <a href="part3.html">right now &rarr;</a>
+  </div>
+</div>
+<div class="bottom-wave"><canvas id="bottom-wave"></canvas></div>
+<footer class="footer">
+  <span class="footer-brand">&gt; ananyaontheshor_</span>
+  <span class="footer-right">I'm building this for me. // 2026</span>
+</footer>
+<script>
+function makeWave(id,yOff){
+  var c=document.getElementById(id);if(!c)return;
+  var ctx=c.getContext('2d');var W=window.innerWidth;var H=80;c.width=W;c.height=H;
+  var rawL=[{"s": 0.3, "a": 12, "f": 0.009, "p": 0, "y": 0.4, "col": "#0c0600", "al": 1.0}, {"s": 0.5, "a": 9, "f": 0.014, "p": 1.6, "y": 0.55, "col": "#180c00", "al": 0.9}, {"s": 0.75, "a": 7, "f": 0.019, "p": 3.0, "y": 0.67, "col": "#241200", "al": 0.85}, {"s": 1.0, "a": 5, "f": 0.025, "p": 0.8, "y": 0.77, "col": "#301800", "al": 0.8}, {"s": 1.4, "a": 4, "f": 0.032, "p": 2.3, "y": 0.86, "col": "#3c1e00", "al": 0.75}, {"s": 1.8, "a": 3, "f": 0.039, "p": 1.2, "y": 0.93, "col": "#482400", "al": 0.7}];
+  var layers=rawL.map(function(l){return Object.assign({},l,{y:Math.min(0.98,l.y+(yOff||0))});});
+  
+  var bio=Array.from({length:10},function(){return {x:Math.random()*W,baseY:0.65+Math.random()*0.25,r:Math.random()*1.4+0.5,phase:Math.random()*Math.PI*2,speed:0.3+Math.random()*0.4,drift:(Math.random()-0.5)*0.2,col:Math.random()>0.5?'#c0902a':'#e0b050'};});
+  var t=0;
+  (function draw(){
+    ctx.clearRect(0,0,W,H);ctx.globalAlpha=1;
+    
+    layers.forEach(function(l){var bY=H*l.y;ctx.beginPath();ctx.moveTo(0,H);for(var x=0;x<=W;x+=2){var y=bY+Math.sin(x*l.f+t*l.s+l.p)*l.a+Math.sin(x*l.f*0.6+t*l.s*1.3+l.p+1)*l.a*0.35;ctx.lineTo(x,y);}ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();ctx.fillStyle=l.col;ctx.globalAlpha=l.al;ctx.fill();});
+    bio.forEach(function(p){var wY=H*p.baseY+Math.sin(p.x*0.018+t*p.speed+p.phase)*4;p.x=(p.x+p.drift+W)%W;var pulse=0.1+0.45*(0.5+0.5*Math.sin(t*1.2+p.phase));ctx.beginPath();ctx.arc(p.x,wY,p.r,0,Math.PI*2);ctx.fillStyle=p.col;ctx.globalAlpha=pulse;ctx.fill();ctx.globalAlpha=pulse*0.2;ctx.beginPath();ctx.arc(p.x,wY,p.r*2.2,0,Math.PI*2);ctx.fill();});
+    ctx.globalAlpha=1;t+=0.016;requestAnimationFrame(draw);
+  })();
+}
+makeWave('top-wave',-0.15);
+makeWave('bottom-wave',0.0);
+</script>
+</body>
+</html>
