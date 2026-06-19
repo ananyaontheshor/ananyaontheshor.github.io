@@ -130,5 +130,122 @@ function makeWave(id,yOff){
 makeWave('top-wave',-0.15);
 makeWave('bottom-wave',0.0);
 </script>
+<script>
+// CONSTELLATION CURSOR — add to every page
+(function(){
+  var canvas = document.createElement('canvas');
+  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+  document.body.appendChild(canvas);
+  var ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  window.addEventListener('resize', function(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  var nodes = [];
+  var mx = window.innerWidth / 2;
+  var my = window.innerHeight / 2;
+  var t = 0;
+
+  var ripples = [];
+
+  document.addEventListener('click', function(e){
+    ripples.push({x: e.clientX, y: e.clientY, r: 0, a: 0.7});
+  });
+
+  document.addEventListener('mousemove', function(e){
+    mx = e.clientX; my = e.clientY;
+    nodes.push({
+      x: mx, y: my,
+      a: 1,
+      r: Math.random() * 1.8 + 1.4,
+      phase: Math.random() * Math.PI * 2,
+      brightness: 0.75 + Math.random() * 0.25
+    });
+    if(nodes.length > 42) nodes.shift();
+  });
+
+  (function draw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    nodes.forEach(function(n){ n.a = Math.max(0, n.a - 0.012); });
+
+    // connections
+    for(var i = 0; i < nodes.length; i++){
+      var n = nodes[i]; if(n.a <= 0) continue;
+      for(var j = i + 1; j < nodes.length; j++){
+        var m = nodes[j]; if(m.a <= 0) continue;
+        var dx = m.x - n.x, dy = m.y - n.y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 110){
+          var shimmer = 0.45 + 0.35 * Math.sin(t * 0.8 + (i * 0.6 + j * 0.4));
+          var alpha = (1 - dist/110) * Math.min(n.a, m.a) * shimmer * 0.75;
+          var grad = ctx.createLinearGradient(n.x, n.y, m.x, m.y);
+          grad.addColorStop(0, 'rgba(192,128,208,' + alpha + ')');
+          grad.addColorStop(0.5, 'rgba(220,170,240,' + (alpha * 1.2) + ')');
+          grad.addColorStop(1, 'rgba(160,80,200,' + alpha + ')');
+          ctx.beginPath(); ctx.moveTo(n.x, n.y); ctx.lineTo(m.x, m.y);
+          ctx.strokeStyle = grad; ctx.globalAlpha = 1; ctx.lineWidth = 0.9; ctx.stroke();
+        }
+      }
+    }
+
+    // stars
+    for(var i = 0; i < nodes.length; i++){
+      var n = nodes[i]; if(n.a <= 0) continue;
+      var pulse = 0.8 + 0.2 * Math.sin(t * 0.9 + n.phase);
+      var r = n.r;
+
+      // outer glow
+      var g1 = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 5);
+      g1.addColorStop(0, 'rgba(212,144,228,' + (n.a * n.brightness * pulse * 0.3) + ')');
+      g1.addColorStop(1, 'rgba(120,60,160,0)');
+      ctx.beginPath(); ctx.arc(n.x, n.y, r * 5, 0, Math.PI * 2);
+      ctx.fillStyle = g1; ctx.globalAlpha = 1; ctx.fill();
+
+      // mid glow
+      var g2 = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, r * 2);
+      g2.addColorStop(0, 'rgba(240,200,255,' + (n.a * n.brightness * pulse * 0.8) + ')');
+      g2.addColorStop(1, 'rgba(192,128,208,0)');
+      ctx.beginPath(); ctx.arc(n.x, n.y, r * 2, 0, Math.PI * 2);
+      ctx.fillStyle = g2; ctx.globalAlpha = 1; ctx.fill();
+
+      // crisp core — more opaque than before
+      ctx.beginPath(); ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(252,230,255,' + (n.a * n.brightness * pulse * 0.95) + ')';
+      ctx.globalAlpha = 1; ctx.fill();
+    }
+
+    // click ripples
+    for(var k = ripples.length - 1; k >= 0; k--){
+      var rp = ripples[k];
+      rp.r += 3; rp.a -= 0.04;
+      if(rp.a <= 0){ ripples.splice(k, 1); continue; }
+      ctx.beginPath(); ctx.arc(rp.x, rp.y, rp.r, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(220,160,240,' + rp.a + ')';
+      ctx.globalAlpha = 1; ctx.lineWidth = 1.2; ctx.stroke();
+      ctx.beginPath(); ctx.arc(rp.x, rp.y, rp.r * 0.5, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(255,220,255,' + (rp.a * 0.5) + ')';
+      ctx.lineWidth = 0.7; ctx.stroke();
+    }
+
+    // cursor glow tip
+    var tg = ctx.createRadialGradient(mx, my, 0, mx, my, 14);
+    tg.addColorStop(0, 'rgba(255,240,255,0.95)');
+    tg.addColorStop(0.3, 'rgba(220,160,240,0.6)');
+    tg.addColorStop(1, 'rgba(120,60,160,0)');
+    ctx.beginPath(); ctx.arc(mx, my, 14, 0, Math.PI * 2);
+    ctx.fillStyle = tg; ctx.globalAlpha = 1; ctx.fill();
+    ctx.beginPath(); ctx.arc(mx, my, 3, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(255,255,255,0.95)'; ctx.globalAlpha = 1; ctx.fill();
+
+    ctx.globalAlpha = 1; t += 0.025;
+    requestAnimationFrame(draw);
+  })();
+})();
+
+</script>
 </body>
 </html>
