@@ -226,16 +226,18 @@ updateFeed();
 // CONSTELLATION CURSOR — add to every page
 (function(){
   var canvas = document.createElement('canvas');
-  canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;';
+  canvas.style.cssText = 'position:fixed;top:0;left:0;pointer-events:none;z-index:9999;';
   document.body.appendChild(canvas);
   var ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
 
-  window.addEventListener('resize', function(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  });
+  function resizeCanvas(){
+    canvas.width = document.documentElement.clientWidth;
+    canvas.height = document.documentElement.clientHeight;
+    canvas.style.width = document.documentElement.clientWidth + 'px';
+    canvas.style.height = document.documentElement.clientHeight + 'px';
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
 
   var nodes = [];
   var mx = window.innerWidth / 2;
