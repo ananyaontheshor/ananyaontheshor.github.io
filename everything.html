@@ -18,7 +18,7 @@
   --lav:#b090d0;--lav-d:#2a1a4a;--lav-m:#6a4a8a;
   --amber:#c0902a;--amber-d:#4a3010;--amber-m:#8a6020;
 }
-body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;overflow-x:hidden;cursor:none;}
 .nav{background:var(--bg);border-bottom:1px solid var(--border);position:relative;z-index:100;}
 .nav-inner{max-width:1280px;margin:0 auto;padding:1.25rem 2.5rem;display:flex;justify-content:space-between;align-items:center;}
 .nav-brand{font-family:'VT323',monospace;font-size:22px;color:var(--purple);letter-spacing:0.04em;text-decoration:none;text-shadow:0 0 10px rgba(160,80,180,0.3);}
@@ -121,6 +121,7 @@ body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;over
   .fi-meta{flex-direction:row;align-items:center;gap:8px;}
   .tag-filters{gap:4px;}
 }
+a,button,span[onclick],[style*="cursor"]{cursor:none!important;}
 </style>
 </head>
 <body>
