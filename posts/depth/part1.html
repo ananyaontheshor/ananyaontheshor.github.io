@@ -99,7 +99,7 @@ a,button,span[onclick],[style*="cursor"]{cursor:none!important;}
 function makeWave(id,yOff){
   var c=document.getElementById(id);if(!c)return;
   var ctx=c.getContext('2d');var H=80;
-  function resizeWave(){c.width=window.innerWidth;c.height=H;}
+  function resizeWave(){c.width=document.documentElement.clientWidth;c.height=H;}
   resizeWave();
   window.addEventListener('resize',resizeWave);
   var rawL=[{"s": 0.3, "a": 12, "f": 0.009, "p": 0, "y": 0.4, "col": "#0c0600", "al": 1.0}, {"s": 0.5, "a": 9, "f": 0.014, "p": 1.6, "y": 0.55, "col": "#180c00", "al": 0.9}, {"s": 0.75, "a": 7, "f": 0.019, "p": 3.0, "y": 0.67, "col": "#241200", "al": 0.85}, {"s": 1.0, "a": 5, "f": 0.025, "p": 0.8, "y": 0.77, "col": "#301800", "al": 0.8}, {"s": 1.4, "a": 4, "f": 0.032, "p": 2.3, "y": 0.86, "col": "#3c1e00", "al": 0.75}, {"s": 1.8, "a": 3, "f": 0.039, "p": 1.2, "y": 0.93, "col": "#482400", "al": 0.7}];
